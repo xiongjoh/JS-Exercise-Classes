@@ -243,9 +243,34 @@ console.log(johnny.sprintChallenge());
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager {
+class ProjectManager extends Instructor{
+  constructor(object){
+    super(object);
+    this.gradClassName = object.gradClassName;
+    this.favInstructor = object.favInstructor;
+  }
 
+  standUp(channel) {
+    return `${this.name} announces to ${channel}, @channel standy times!`
+  }
+  debugsCode(studentObj, subject) {
+    return `${this.name} debugs ${studentObj.name}'s code on ${subject}`
+  }
 }
+
+const primeRobo = new ProjectManager({
+  name: 'RoboPrime',
+  age: 1,
+  location: 'Atmosphere',
+  specialty: 'Ruby',
+  favLanguage: 'JavaScript',
+  catchPhrase: 'beep boop',
+  gradClassName: 'CS1',
+  favInstructor: 'Instructoid'
+})
+
+console.log(primeRobo.standUp('Web3000_Rob'));
+console.log(primeRobo.debugsCode(johnny, 'Javascript'));
 
 /*
   STRETCH PROBLEM (no tests!)
