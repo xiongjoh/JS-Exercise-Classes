@@ -169,6 +169,14 @@ class Instructor extends Lambdasian{
   grade(student, subject) {
     return `${student.name} receives a perfect score on ${subject}`
   }
+  addOrSubtractGrade(student) {
+    if (Math.random() < .5) {
+      student.grade += Math.floor(Math.random()*5 + 1);
+    }
+    else {
+      student.grade -= Math.floor(Math.random()*5 + 1);
+    }
+  }
 }
 
 const roboto = new Instructor({
@@ -204,6 +212,7 @@ class Student extends Lambdasian{
     this.previousBackground = object.previousBackground;
     this.className = object.className;
     this.favSubjects = object.favSubjects;
+    this.grade = Math.floor(Math.random()*101);
   }
 
   listSubjects() {
@@ -214,6 +223,14 @@ class Student extends Lambdasian{
   }
   sprintChallenge(subject) {
     return `${this.name} has begun sprint challenge on ${subject}`
+  }
+  graduate() {
+    if (this.grade > 70) {
+      console.log(`${this.name} Graduated!`)
+    }
+    else {
+      console.log(`${this.name}, needs to get over 70% to graduate`)
+    }
   }
 }
 
@@ -226,6 +243,7 @@ const johnny = new Student({
   favSubjects: ['Javascript, Java, Python, CS, HTML, CSS']
 })
 
+console.log(johnny.grade);
 console.log(johnny.listSubjects());
 console.log(johnny.PRAssignment());
 console.log(johnny.sprintChallenge());
@@ -271,6 +289,10 @@ const primeRobo = new ProjectManager({
 
 console.log(primeRobo.standUp('Web3000_Rob'));
 console.log(primeRobo.debugsCode(johnny, 'Javascript'));
+console.log(johnny.grade);
+primeRobo.addOrSubtractGrade(johnny)
+console.log(johnny.grade);
+johnny.graduate();
 
 /*
   STRETCH PROBLEM (no tests!)
