@@ -198,9 +198,37 @@ console.log(roboto.grade(me, 'Javascript'));
         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
-class Student {
+class Student extends Lambdasian{
+  constructor(object) {
+    super(object);
+    this.previousBackground = object.previousBackground;
+    this.className = object.className;
+    this.favSubjects = object.favSubjects;
+  }
 
+  listSubjects() {
+    return `${this.favSubjects.join(', ')}`
+  }
+  PRAssignment(subject) {
+    return `${this.name} has submitted a PR for ${subject}`
+  }
+  sprintChallenge(subject) {
+    return `${this.name} has begun sprint challenge on ${subject}`
+  }
 }
+
+const johnny = new Student({
+  name: 'Johnny',
+  age: 28,
+  location: 'USA',
+  previousBackground: 'Java, Python',
+  className: 'Web36',
+  favSubjects: ['Javascript, Java, Python, CS, HTML, CSS']
+})
+
+console.log(johnny.listSubjects());
+console.log(johnny.PRAssignment());
+console.log(johnny.sprintChallenge());
 
 /*
   TASK 6
